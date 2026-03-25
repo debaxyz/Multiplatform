@@ -34,7 +34,8 @@ import com.debaxyz.tense.divider.*
 import com.debaxyz.tense.ui.theme.Accent400
 import com.debaxyz.tense.ui.theme.Accent50
 
-
+import com.debaxyz.tense.*
+import androidx.compose.ui.res.stringResource
 
 /**
  * Composable function that represents the home screen of the application.
@@ -102,7 +103,7 @@ fun OutlinedCardLazyColumnExample() {
         Spacer(modifier = Modifier.width(16.dp))  
         
         
-        Text( text = "ଏ/ଆ/ଉ/ଆନ୍ତି",
+        Text( text = stringResource(id = R.string.text1),
               fontWeight = FontWeight.Bold,
               color = Accent400,
               
