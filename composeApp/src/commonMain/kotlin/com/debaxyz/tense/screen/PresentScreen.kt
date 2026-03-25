@@ -33,10 +33,9 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import com.debaxyz.tense.divider.*
 import com.debaxyz.tense.ui.theme.Accent400
 import com.debaxyz.tense.ui.theme.Accent50
-
-import com.debaxyz.tense.*
-import androidx.compose.ui.res.stringResource
-
+import tense.composeapp.generated.resources.text1
+import tense.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.stringResource
 /**
  * Composable function that represents the home screen of the application.
  */
@@ -103,7 +102,7 @@ fun OutlinedCardLazyColumnExample() {
         Spacer(modifier = Modifier.width(16.dp))  
         
         
-        Text( text = stringResource(id = R.string.text1),
+        Text( text = stringResource(Res.string.text1),
               fontWeight = FontWeight.Bold,
               color = Accent400,
               
