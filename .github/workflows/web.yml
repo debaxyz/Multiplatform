@@ -1,0 +1,51 @@
+# .github/workflows/deploy.yml
+name: Deploy KMP Web App to GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # Trigger the workflow on push to the main branch
+  workflow_dispatch: # Allow manual triggering from the Actions tab
+
+# Grant the necessary permissions for deploying to Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17' # or 17, depending on your KMP setup
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build KMP Web App
+        # This runs the Gradle task to generate the production files.
+        # The exact path to the output might differ based on your project structure.
+        run: ./gradlew :composeApp:jsBrowserDistribution
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Path to the directory containing the built static files
+          path: 'composeApp/build/dist/js/productionExecutable'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
