@@ -38,7 +38,7 @@ jobs:
       - name: Build KMP Web App
         # This runs the Gradle task to generate the production files.
         # The exact path to the output might differ based on your project structure.
-        run: ./gradlew :composeApp:jsBrowserDistribution
+        run: ./gradlew :composeApp:wasmJsBrowserDistribution
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
