@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Path to the directory containing the built static files
-          path: 'composeApp/build/dist/wasm/productionExecutable'
+          path: 'composeApp/build/dist/wasmJs/productionExecutable'
 
       - name: Deploy to GitHub Pages
         id: deployment
